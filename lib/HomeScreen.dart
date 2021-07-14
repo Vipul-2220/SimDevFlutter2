@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +42,46 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: true,
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 20.0,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined,
+            color: Colors.black38,
+              size: 30.0,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.drag_indicator_outlined,
+              color: Colors.black38,
+            size: 30.0,
+            ),
+              label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.arrow_circle_up_outlined,
+              color: Colors.black38,
+              size: 30.0,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_mall_outlined,
+              color: Colors.black38,
+              size: 30.0,
+            )
+            ,label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline_rounded,
+              color: Colors.black38,
+              size: 30.0,
+            )
+            ,label: '',
+          ),
+        ],
+      ),
       body: ListView(
         children: [
           SizedBox(
@@ -48,20 +89,23 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Colors.white,
-                  filled: true,
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-                  prefixIcon: Icon(
-                    Icons.search_outlined,
-                    size: 30.0,
-                  ),
-                  hintText: "Search",
-                  hintStyle: TextStyle(
-                    fontSize: 20.0,
-                  )),
+            child: Card(
+              elevation: 10.0,
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    fillColor: Colors.white,
+                    filled: true,
+                    contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                    prefixIcon: Icon(
+                      Icons.search_outlined,
+                      size: 30.0,
+                    ),
+                    hintText: "Search",
+                    hintStyle: TextStyle(
+                      fontSize: 20.0,
+                    )),
+              ),
             ),
           ),
           Categories(),

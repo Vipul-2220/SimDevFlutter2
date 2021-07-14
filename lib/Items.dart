@@ -1,140 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:sim_dev_task2/ItemDetails.dart';
 
-class Items extends StatelessWidget {
+class Items extends StatefulWidget {
   const Items({Key? key}) : super(key: key);
+
+  @override
+  _ItemsState createState() => _ItemsState();
+}
+
+class _ItemsState extends State<Items> {
+  Widget itemShow(String itemName, String price, String url) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => showDetails(context, itemName, price, url),
+              ),
+            );
+          },
+          child: Card(
+            elevation: 20.0,
+            child: Image(
+              height: 200,
+              width: 190,
+              image: AssetImage('$url'),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10.0,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '$itemName\n'
+              'Rs. $price',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.favorite_border,
+                size: 30,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10.0,
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Column(children: [
+          itemShow('Men\'s Jacket', '4699', 'images/items/pumaHoodie1.jpg'),
+          itemShow('Louis Phillipe\n Men\'s Shirt', '1899',
+              'images/items/menshirt.jpg'),
+          itemShow('Van Heusen\n Men\'s Chinos', '1999',
+              'images/items/menchinos.jpg'),
+        ]),
         Column(
           children: [
-            Card(
-              elevation: 20.0,
-              child: Image(
-                height: 200,
-                width: 190,
-                image: AssetImage('images/items/pumaHoodie1.jpg'),
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Text(
-              'Puma Men\'s jacket\n'
-              'Rs. 4699',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Card(
-              elevation: 20.0,
-              child: Image(
-                height: 200,
-                width: 190,
-                image: AssetImage('images/items/menshirt.jpg'),
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Text(
-              'Louis Phillipe\n'
-              'Men\'s Formal Shirt\n'
-                  'Rs. 1899',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Card(
-              elevation: 20.0,
-              child: Expanded(
-                child: Image(
-                  height: 200,
-                  width: 190,
-                  image: AssetImage('images/items/menchinos.jpg'),
-                ),
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Text(
-              'House of Versace\n'
-                  'Men\'s Chinos\n'
-                  'Rs. 1999',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        Column(
-          children: [
-            Card(
-              elevation: 20.0,
-              child: Expanded(
-                child: Image(
-                  height: 200,
-                  width: 200,
-                  image: AssetImage('images/items/womenjacket1.jpg'),
-                ),
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Text(
-              'Zara Women\'s jacket\n'
-                  'Rs. 7699',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Card(
-              elevation: 20.0,
-              child: Expanded(
-                child: Image(
-                  height: 200,
-                  width: 200,
-                  image: AssetImage('images/items/womenshirt.jpg'),
-                ),
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Text(
-              'Women\'s Long Shirt\n'
-                  'Rs. 1499',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Card(
-              elevation: 20.0,
-              child: Expanded(
-                child: Image(
-                  height: 200,
-                  width: 200,
-                  image: AssetImage('images/items/womenjeans.jpg'),
-                ),
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            Text(
-              'Levis Women\'s Jeans\n'
-                  'Rs. 2699',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            itemShow(
+                'Women\'s Jacket', '7699', 'images/items/womenjacket1.jpg'),
+            itemShow('Women\'s Shirt', '1499', 'images/items/womenshirt.jpg'),
+            itemShow('Women\'s Jeans', '2699', 'images/items/womenjeans.jpg'),
           ],
         ),
       ],
