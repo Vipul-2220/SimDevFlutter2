@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:sim_dev_task2/ItemDetails.dart';
 
-class Items extends StatefulWidget {
-  const Items({Key? key}) : super(key: key);
+class showItems extends StatefulWidget {
+
+  final String itemName;
+  final int price;
+  final int originalPrice;
+  final String url;
+  final String url1;
+  final String url2;
+  bool like;
+
+  showItems(
+      this.itemName,
+      this.price,
+      this.originalPrice,
+      this.url,
+      this.url1,
+      this.url2,
+      this.like);
 
   @override
-  _ItemsState createState() => _ItemsState();
+  _showItemsState createState() => _showItemsState();
 }
 
-class _ItemsState extends State<Items> {
-
-  bool like = false;
-
-  Widget itemShow(String itemName, int price, int originalPrice, String url) {
+class _showItemsState extends State<showItems> {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         GestureDetector(
@@ -21,7 +35,13 @@ class _ItemsState extends State<Items> {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    showDetails(itemName,price,url),
+                    showDetails(
+                        widget.itemName,
+                        widget.price,
+                        widget.url,
+                        widget.url1,
+                        widget.url2,
+                        widget.like),
               ),
             );
           },
@@ -30,7 +50,7 @@ class _ItemsState extends State<Items> {
             child: Image(
               height: 200,
               width: 190,
-              image: AssetImage('$url'),
+              image: AssetImage('${widget.url}'),
             ),
           ),
         ),
@@ -43,7 +63,7 @@ class _ItemsState extends State<Items> {
             Column(
               children: [
                 Text(
-                  '$itemName',
+                  '${widget.itemName}',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,
@@ -53,7 +73,7 @@ class _ItemsState extends State<Items> {
                 Row(
                   children: [
                     Text(
-                      'Rs. $price',
+                      'Rs. ${widget.price}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
@@ -62,7 +82,7 @@ class _ItemsState extends State<Items> {
                     ),
                     SizedBox(width: 5.0,),
                     Text(
-                      '$originalPrice',
+                      '${widget.originalPrice}',
                       style: TextStyle(
                         color: Colors.black45,
                         fontSize: 20.0,
@@ -77,12 +97,18 @@ class _ItemsState extends State<Items> {
             IconButton(
               onPressed: () {
                 setState(() {
-                  like = true;
+                  widget.like = !widget.like;
                 });
               },
-              icon: Icon(
+              icon: widget.like == true ? Icon(
+                Icons.favorite,
+                color: Colors.red,
+                size: 30,
+              ) :
+              Icon(
                 Icons.favorite_border,
                 size: 30,
+                color: Colors.black,
               ),
             ),
           ],
@@ -93,26 +119,75 @@ class _ItemsState extends State<Items> {
       ],
     );
   }
+}
+
+
+class Items extends StatefulWidget {
+  const Items({Key? key}) : super(key: key);
+
+  @override
+  _ItemsState createState() => _ItemsState();
+}
+
+class _ItemsState extends State<Items> {
+
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Column(children: [
-          itemShow('Men\'s Jacket', 4699, 5699, 'images/items/pumaHoodie1.jpg'),
-          itemShow('Louis Phillipe\n Men\'s Shirt', 1899, 2499,
-              'images/items/menshirt.jpg'),
-          itemShow('Van Heusen\n Men\'s Chinos', 1999, 3599,
-              'images/items/menchinos.jpg'),
+          showItems('Men\'s Jacket',
+              4699,
+              5699,
+              'images/items/pumaHoodie1.jpg',
+              'images/items/pumaHoodie3.jpg',
+              'images/items/pumaHoodie4.jpg',
+               false,
+          ),
+          showItems('Louis Phillipe\n Men\'s Shirt',
+              1899,
+              2499,
+              'images/items/menshirt.jpg',
+            'images/items/menshirt2.jpg',
+            'images/items/menshirt3.jpg',
+            false,
+          ),
+          showItems('Van Heusen\n Men\'s Chinos',
+              1999,
+              3599,
+              'images/items/menchinos.jpg',
+            'images/items/menchinos2.jpg',
+            'images/items/menchinos3.jpg',
+            false,
+          ),
         ]),
         Column(
           children: [
-            itemShow('Women\'s Jacket', 7699, 11999,
-                'images/items/womenjacket1.jpg'),
-            itemShow(
-                'Women\'s Shirt', 1499, 2899, 'images/items/womenshirt.jpg'),
-            itemShow(
-                'Women\'s Jeans', 2699, 3599, 'images/items/womenjeans.jpg'),
+            showItems('Women\'s Jacket',
+                7699,
+                11999,
+                'images/items/womenjacket1.jpg',
+              'images/items/womenjacket2.jpg',
+              'images/items/womenjacket3.jpg',
+              false,
+            ),
+            showItems('Women\'s Shirt',
+                1499,
+                2899,
+                'images/items/womenshirt.jpg',
+              'images/items/womenshirt2.jpg',
+              'images/items/womenshirt3.jpg',
+              false,
+            ),
+            showItems('Women\'s Jeans',
+                2699,
+                3599,
+                'images/items/womenjeans.jpg',
+              'images/items/womenjeans2.jpg',
+              'images/items/womenjeans3.jpg',
+              false,
+            ),
           ],
         ),
       ],
