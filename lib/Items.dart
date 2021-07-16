@@ -38,6 +38,7 @@ class _showItemsState extends State<showItems> {
                     showDetails(
                         widget.itemName,
                         widget.price,
+                        widget.originalPrice,
                         widget.url,
                         widget.url1,
                         widget.url2,

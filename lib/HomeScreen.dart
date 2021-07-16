@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sim_dev_task2/Cart.dart';
 import 'package:sim_dev_task2/Categories.dart';
 import 'package:sim_dev_task2/Items.dart';
 
@@ -34,10 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          trailing: Icon(
-            Icons.local_mall_outlined,
-            color: Colors.black,
-            size: 30.0,
+          trailing: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartView(),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.local_mall_outlined,
+              color: Colors.black,
+              size: 30.0,
+            ),
           ),
         ),
         centerTitle: true,

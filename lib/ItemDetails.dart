@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:sim_dev_task2/Cart.dart';
 
 class showDetails extends StatefulWidget {
-
   final String itemName;
   final int price;
+  final int originalPrice;
   final String url;
   final String url1;
   final String url2;
   bool like;
 
-  showDetails(this.itemName, this.price, this.url, this.url1, this.url2, this.like);
+  showDetails(this.itemName, this.price, this.originalPrice, this.url,
+      this.url1, this.url2, this.like);
 
   @override
   _showDetailsState createState() => _showDetailsState();
 }
 
 class _showDetailsState extends State<showDetails> {
-
-  int count =1;
-
-
+  int count = 1;
 
   @override
   Widget build(BuildContext context) {
-
     String imageUrl = widget.url;
     int p = widget.price;
+    int itemCount = 0;
+    String size = 'Large';
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -49,19 +49,28 @@ class _showDetailsState extends State<showDetails> {
                 widget.like = !widget.like;
               });
             },
-            icon: widget.like == true ? Icon(
-              Icons.favorite,
-              color: Colors.red,
-              size: 30,
-            ) :
-            Icon(
-              Icons.favorite_border,
-              size: 30,
-              color: Colors.black,
-            ),
+            icon: widget.like == true
+                ? Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 30,
+                  )
+                : Icon(
+                    Icons.favorite_border,
+                    size: 30,
+                    color: Colors.black,
+                  ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              itemCount++;
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartView(),
+                ),
+              );
+            },
             icon: Icon(
               Icons.local_mall_outlined,
               color: Colors.black,
@@ -77,12 +86,14 @@ class _showDetailsState extends State<showDetails> {
               height: 400,
               image: AssetImage(imageUrl),
             ),
-            SizedBox(height: 5.0,),
+            SizedBox(
+              height: 5.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       imageUrl = widget.url;
                       print('new Url updated');
@@ -101,9 +112,11 @@ class _showDetailsState extends State<showDetails> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5.0,),
+                SizedBox(
+                  width: 5.0,
+                ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       imageUrl = widget.url1;
                       print('new Url updated');
@@ -122,9 +135,11 @@ class _showDetailsState extends State<showDetails> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5.0,),
+                SizedBox(
+                  width: 5.0,
+                ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     imageUrl = widget.url2;
                     print('new Url updated');
                   },
@@ -189,7 +204,8 @@ class _showDetailsState extends State<showDetails> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Size',
@@ -224,7 +240,8 @@ class _showDetailsState extends State<showDetails> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         IconButton(
                                           onPressed: () {
@@ -266,7 +283,9 @@ class _showDetailsState extends State<showDetails> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 10.0,),
+                            SizedBox(
+                              height: 10.0,
+                            ),
                             Row(
                               children: [
                                 Container(
@@ -280,9 +299,11 @@ class _showDetailsState extends State<showDetails> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Color',
@@ -314,7 +335,8 @@ class _showDetailsState extends State<showDetails> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Composition',
@@ -341,7 +363,6 @@ class _showDetailsState extends State<showDetails> {
                             )
                           ],
                         ),
-
                         Container(
                           width: 80,
                           height: 120,
@@ -387,24 +408,3 @@ class _showDetailsState extends State<showDetails> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
