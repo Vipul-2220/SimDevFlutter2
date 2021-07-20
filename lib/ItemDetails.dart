@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sim_dev_task2/Cart.dart';
 
@@ -28,10 +29,10 @@ class _showDetailsState extends State<showDetails> {
     String size = 'Large';
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffeeeeee),
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffeeeeee),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -82,78 +83,105 @@ class _showDetailsState extends State<showDetails> {
       body: Container(
         child: Column(
           children: [
-            Image(
-              height: 400,
-              image: AssetImage(imageUrl),
-            ),
-            SizedBox(
-              height: 5.0,
-            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      imageUrl = widget.url;
-                      print('new Url updated');
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black45,
+                IconButton(
+                    onPressed: (){},
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: Colors.black45,
+                    ),
+                ),
+                Expanded(
+                  child: Stack(
+                      children: [
+                    Image(
+                      height: 450,
+                      image: AssetImage(imageUrl),
+                    ),
+                    Positioned(
+                      bottom: 10.0,
+                      left: 80.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  imageUrl = widget.url;
+                                  print('new Url updated');
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image(
+                                  height: 65,
+                                  width: 65,
+                                  image: AssetImage(widget.url),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  imageUrl = widget.url1;
+                                  print('new Url updated');
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image(
+                                  height: 65,
+                                  width: 65,
+                                  image: AssetImage(widget.url1),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                imageUrl = widget.url2;
+                                print('new Url updated');
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image(
+                                  height: 65,
+                                  width: 65,
+                                  image: AssetImage(widget.url2),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    child: Image(
-                      height: 65,
-                      width: 65,
-                      image: AssetImage(widget.url),
-                    ),
+                  ],
                   ),
                 ),
-                SizedBox(
-                  width: 5.0,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      imageUrl = widget.url1;
-                      print('new Url updated');
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black45,
-                      ),
-                    ),
-                    child: Image(
-                      height: 65,
-                      width: 65,
-                      image: AssetImage(widget.url1),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 5.0,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    imageUrl = widget.url2;
-                    print('new Url updated');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black45,
-                      ),
-                    ),
-                    child: Image(
-                      height: 65,
-                      width: 65,
-                      image: AssetImage(widget.url2),
-                    ),
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(
+                    Icons.chevron_right,
                   ),
                 ),
               ],
@@ -376,14 +404,20 @@ class _showDetailsState extends State<showDetails> {
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.add_box_outlined,
-                                  color: Colors.white,
-                                  size: 40.0,
-                                ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 10.0,),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.add_box_outlined,
+                                      color: Colors.white,
+                                      size: 40.0,
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 5.0,

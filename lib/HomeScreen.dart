@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sim_dev_task2/Cart.dart';
 import 'package:sim_dev_task2/Categories.dart';
 import 'package:sim_dev_task2/Items.dart';
+import 'package:sim_dev_task2/ViewCategories.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,11 +12,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffeeeeee),
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
@@ -53,45 +53,47 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: true,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 20.0,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined,
-            color: Colors.black38,
-              size: 30.0,
-            ),
-            label: '',
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: 60.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.blue,
+                  size: 35.0,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                          Icons.drag_indicator_outlined,
+                          color: Colors.black38,
+                          size: 35.0,
+                        ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                          Icons.local_mall_outlined,
+                          color: Colors.black38,
+                          size: 35.0,
+                        ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                          Icons.person_outline_rounded,
+                          color: Colors.black38,
+                          size: 35.0,
+                        ),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.drag_indicator_outlined,
-              color: Colors.black38,
-            size: 30.0,
-            ),
-              label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_circle_up_outlined,
-              color: Colors.black38,
-              size: 30.0,
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_mall_outlined,
-              color: Colors.black38,
-              size: 30.0,
-            )
-            ,label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline_rounded,
-              color: Colors.black38,
-              size: 30.0,
-            )
-            ,label: '',
-          ),
-        ],
+        ),
       ),
       body: ListView(
         children: [
@@ -100,26 +102,28 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-            child: Card(
-              elevation: 10.0,
-              child: TextField(
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.white,
-                    filled: true,
-                    contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-                    prefixIcon: Icon(
-                      Icons.search_outlined,
-                      size: 30.0,
-                    ),
-                    hintText: "Search",
-                    hintStyle: TextStyle(
-                      fontSize: 20.0,
-                    )),
+            child: TextField(
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                fillColor: Colors.white,
+                filled: true,
+                contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                prefixIcon: Icon(
+                  Icons.search_outlined,
+                  size: 30.0,
+                ),
+                hintText: "Search Products",
+                hintStyle: TextStyle(
+                  fontSize: 20.0,
+                  height: 1.8,
+                ),
               ),
             ),
           ),
-          Categories(),
+          ViewCategories(),
           SizedBox(
             height: 10.0,
           ),

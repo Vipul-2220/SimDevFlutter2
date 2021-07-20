@@ -1,163 +1,35 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Categories extends StatelessWidget {
-  const Categories({Key? key}) : super(key: key);
+class Categories extends StatefulWidget {
+  final String url;
+  final String name;
+  const Categories(this.url, this.name);
 
+  @override
+  _CategoriesState createState() => _CategoriesState();
+}
+
+class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80.0,
-      color: Colors.white70,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
+      //width: 50,
+      // height: 68,
+      child: Column(
         children: [
           Container(
             margin: EdgeInsets.all(10.0),
-            height: 70.0,
-            width: 70.0,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                )
-              ],
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(color: Colors.black12),
             ),
-            child: ClipOval(
-              child: Image(
-                height: 60.0,
-                width: 60.0,
-                fit: BoxFit.cover,
-                image: AssetImage("images/mentshirt.png"),
-              ),
+            child: CircleAvatar(
+              radius: 30.0,
+              backgroundImage: AssetImage(widget.url),
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            height: 80.0,
-            width: 80.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                )
-              ],
-            ),
-            child: ClipOval(
-              child: Image(
-                height: 60.0,
-                width: 60.0,
-                fit: BoxFit.cover,
-                image: AssetImage("images/dresses.jpg"),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            height: 80.0,
-            width: 80.0,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                  )
-                ],
-            ),
-            child: ClipOval(
-              child: Image(
-                height: 80.0,
-                width: 80.0,
-                fit: BoxFit.cover,
-                image: AssetImage("images/shoes.jpg"),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            height: 80.0,
-            width: 80.0,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                  )
-                ],
-            ),
-            child: ClipOval(
-              child: Image(
-                height: 60.0,
-                width: 60.0,
-                fit: BoxFit.cover,
-                image: AssetImage("images/ladiesbag.jpg"),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            height: 80.0,
-            width: 80.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                )
-              ],
-            ),
-            child: ClipOval(
-              child: Image(
-                height: 60.0,
-                width: 60.0,
-                fit: BoxFit.cover,
-                image: AssetImage("images/hats.jpg"),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            height: 80.0,
-            width: 80.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                )
-              ],
-            ),
-            child: ClipOval(
-              child: Image(
-                height: 60.0,
-                width: 60.0,
-                fit: BoxFit.cover,
-                image: AssetImage("images/pants.jpg"),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            height: 80.0,
-            width: 80.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                )
-              ],
-            ),
-            child: ClipOval(
-              child: Image(
-                height: 60.0,
-                width: 60.0,
-                fit: BoxFit.cover,
-                image: AssetImage("images/watches.jpg"),
-              ),
-            ),
-          ),
+          Text(widget.name),
         ],
       ),
     );
