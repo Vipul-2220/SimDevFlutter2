@@ -60,11 +60,13 @@ class _showItemsState extends State<showItems> {
                   ),
                 );
               },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
+              child: Container(
+                height: 200,
+                width: 180,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
                 child: Image(
-                  height: 200,
-                  width: 190,
                   image: AssetImage('${widget.url}'),
                   fit: BoxFit.cover,
                 ),
@@ -76,7 +78,7 @@ class _showItemsState extends State<showItems> {
               child: Transform.scale(
                 scale: 0.7,
                 child: FloatingActionButton(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.white60,
                   onPressed: (){
                     setState(() {
                       widget.like = !widget.like;

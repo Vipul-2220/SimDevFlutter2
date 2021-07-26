@@ -20,30 +20,33 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
-    int c = widget.itemCount;
     int p = widget.price;
     int op = widget.originalPrice;
     int ic = widget.itemCount;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-      child: Container(
-        height: 120.0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image(
-              height: 80.0,
-              width: 80.0,
+    return Container(
+      height: 120.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            color: Colors.red,
+            height: 80.0,
+            width: 80.0,
+            child: Image(
               image: AssetImage(widget.url),
+              fit: BoxFit.cover,
             ),
-            SizedBox(
-              width: 10.0,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          ),
+          // SizedBox(
+          //   width: 10.0,
+          // ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 250,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -55,7 +58,7 @@ class _CartState extends State<Cart> {
                         fontFamily: 'PlayfairDisplay',
                       ),
                     ),
-                    SizedBox(width: 100,),
+                    //SizedBox(width: 100,),
 
                     IconButton(
                       onPressed: () {},
@@ -67,84 +70,83 @@ class _CartState extends State<Cart> {
                     )
                   ],
                 ),
-                SizedBox(
-                  height: 5.0,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Size: ',
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black45,
-                      ),
+              ),
+
+              Row(
+                children: [
+                  Text(
+                    'Size: ',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black45,
                     ),
-                    // SizedBox(width: 5.0,),
-                    Text(
-                      widget.size,
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black45,
-                      ),
+                  ),
+                  // SizedBox(width: 5.0,),
+                  Text(
+                    widget.size,
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black45,
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Rs. $p',
-                      style: TextStyle(
-                        fontSize: 20.0,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'Rs. $p',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(width: 5.0,),
+                  Text(
+                    'Rs. $op',
+                    style: TextStyle(
+                        fontSize: 15.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(width: 5.0,),
-                    Text(
-                      'Rs. $op',
-                      style: TextStyle(
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black45,
-                          decoration: TextDecoration.lineThrough),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          widget.itemCount--;
-                        });
-                      },
-                      icon: Icon(
-                        Icons.remove_circle_outline,
                         color: Colors.black45,
-                        size: 20,
-                      ),
+                        decoration: TextDecoration.lineThrough),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        widget.itemCount--;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.remove_circle_outline,
+                      color: Colors.black45,
+                      size: 20,
                     ),
-                    Text(
-                      '$ic',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                      ),
+                  ),
+                  Text(
+                    '$ic',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
                     ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          widget.itemCount++;
-                        });
-                      },
-                      icon: Icon(
-                        Icons.add_circle,
-                        color: Color(0xff0D41E1),
-                        size: 20,
-                      ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        widget.itemCount++;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.add_circle,
+                      color: Color(0xff0D41E1),
+                      size: 20,
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -159,10 +161,11 @@ class _CartViewState extends State<CartView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffeeeeee),
+      backgroundColor: Color(0xfff6f6f6),
+      // Color(0xffeeeeee),
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Color(0xffeeeeee),
+        backgroundColor: Color(0xfff6f6f6),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -200,7 +203,7 @@ class _CartViewState extends State<CartView> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
           child: Container(
             child: Column(
               children: [
@@ -305,7 +308,7 @@ class _CartViewState extends State<CartView> {
                         ),
                       ),
                       Container(
-                        color: Color(0xffeeeeee),
+                        color: Color(0xfff6f6f6),
                         height: 40.0,
                         child: Center(
                           child: Text(

@@ -23,10 +23,12 @@ class _showDetailsState extends State<showDetails> {
 
   @override
   Widget build(BuildContext context) {
+    int Count = 3;
     String imageUrl = widget.url;
     int p = widget.price;
     int itemCount = 0;
     String size = 'Large';
+    Size sizee  = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Color(0xffeeeeee),
@@ -44,151 +46,218 @@ class _showDetailsState extends State<showDetails> {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              setState(() {
-                widget.like = !widget.like;
-              });
-            },
-            icon: widget.like == true
-                ? Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                    size: 30,
-                  )
-                : Icon(
-                    Icons.favorite_border,
-                    size: 30,
-                    color: Colors.black,
-                  ),
-          ),
-          IconButton(
-            onPressed: () {
-              itemCount++;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CartView(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    widget.like = !widget.like;
+                  });
+                },
+                icon: widget.like == true
+                    ? Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                  size: 30,
+                )
+                    : Icon(
+                  Icons.favorite_border,
+                  size: 30,
+                  color: Colors.black,
                 ),
-              );
-            },
-            icon: Icon(
-              Icons.local_mall_outlined,
-              color: Colors.black,
-              size: 30.0,
-            ),
-          ),
-        ],
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Row(
-              children: [
+              ),
+              Stack(children: [
                 IconButton(
-                    onPressed: (){},
-                    icon: Icon(
-                      Icons.chevron_left,
-                      color: Colors.black45,
-                    ),
-                ),
-                Expanded(
-                  child: Stack(
-                      children: [
-                    Image(
-                      height: 450,
-                      image: AssetImage(imageUrl),
-                    ),
-                    Positioned(
-                      bottom: 10.0,
-                      left: 80.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  imageUrl = widget.url;
-                                  print('new Url updated');
-                                });
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Image(
-                                  height: 65,
-                                  width: 65,
-                                  image: AssetImage(widget.url),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5.0,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  imageUrl = widget.url1;
-                                  print('new Url updated');
-                                });
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Image(
-                                  height: 65,
-                                  width: 65,
-                                  image: AssetImage(widget.url1),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5.0,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                imageUrl = widget.url2;
-                                print('new Url updated');
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Image(
-                                  height: 65,
-                                  width: 65,
-                                  image: AssetImage(widget.url2),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CartView(),
                       ),
-                    ),
-                  ],
+                    );
+                  },
+                  icon: Icon(
+                    Icons.local_mall_outlined,
+                    color: Colors.black,
+                    size: 30.0,
                   ),
                 ),
-                IconButton(
-                  onPressed: (){},
-                  icon: Icon(
-                    Icons.chevron_right,
+                Positioned(
+                  top: 5,
+                  right: 0,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+                    alignment: Alignment.center,
+                    child: Text('$Count',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),),
                   ),
                 ),
               ],
+              ),
+              SizedBox(width: 10.0,),
+            ],
+          ),
+        ],
+      ),
+      // bottomNavigationBar:
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              child: Row(
+                children: [
+
+                  Stack(
+                    children: [
+                      Container(
+                        height: 450,
+                        width: 400,
+                        child: Image(
+                          image: AssetImage(imageUrl),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+
+                      Positioned(
+                        bottom: 10,
+                        left: MediaQuery.of(context).size.width / 2.5,
+                        child: Container(
+                          child: Text("_____",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Positioned(
+                        left: 8,
+                        top: MediaQuery.of(context).size.height / 4,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.chevron_left,
+                            color: Colors.black45,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 40.0,
+                        left: 90.0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xffeeeeee),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      imageUrl = widget.url;
+                                      print('new Url updated');
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 65,
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(color: Colors.black45)
+                                    ),
+                                    child: Image(
+                                      image: AssetImage(widget.url),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5.0,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      imageUrl = widget.url1;
+                                      print('new Url updated');
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 65,
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(color: Colors.black45)
+                                    ),
+                                    child: Image(
+                                      image: AssetImage(widget.url1),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5.0,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    imageUrl = widget.url2;
+                                    print('new Url updated');
+                                  },
+                                  child: Container(
+                                    height: 65,
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(color: Colors.black45)
+                                    ),
+                                    child: Image(
+                                      image: AssetImage(widget.url2),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Positioned(
+                        right: 8,
+                        top: MediaQuery.of(context).size.height / 4,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.chevron_right,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                ],
+              ),
             ),
             Container(
-              child: ListTile(
-                title: Column(
+              height: 230,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(40.0),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+                child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,14 +267,14 @@ class _showDetailsState extends State<showDetails> {
                           style: TextStyle(
                             fontSize: 25.0,
                             fontFamily: 'PlayfairDisplay',
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         Text(
                           'Rs. $p',
                           style: TextStyle(
                             fontSize: 25.0,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -408,7 +477,9 @@ class _showDetailsState extends State<showDetails> {
                             children: [
                               Row(
                                 children: [
-                                  SizedBox(width: 10.0,),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
                                   IconButton(
                                     onPressed: () {},
                                     icon: Icon(
